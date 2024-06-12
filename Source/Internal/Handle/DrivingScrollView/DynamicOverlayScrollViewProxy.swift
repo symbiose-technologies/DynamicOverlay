@@ -44,8 +44,14 @@ private extension UIView {
         let frame = coordinate.convert(bounds, from: self)
         guard area.intersects(frame) else { return nil }
         if let result = self as? UIScrollView {
-            return result
+            if  result.contentSize.width > result.frame.width {
+//                debugPrint("HScroll -- skipping")
+                
+            } else {
+                return result
+            }
         }
+        
         for subview in subviews {
             if let result = subview.findScrollView(in: area, coordinate: coordinate) {
                 return result

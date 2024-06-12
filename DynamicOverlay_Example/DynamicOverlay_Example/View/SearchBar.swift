@@ -58,6 +58,13 @@ private struct SearchBarAdaptor: UIViewRepresentable {
 
     func makeUIView(context: Context) -> UISearchBar {
         let searchBar = UISearchBar()
+        
+//        searchBar.scopeButtonTitles = ["Test", "Hello", "What's up", "Tell me more", "Hey2", "hey 45", "whats up"]
+//        searchBar.showsScopeBar = true
+//
+//        searchBar.searchBarStyle = .prominent
+        
+        
         searchBar.searchBarStyle = .minimal
         searchBar.showsCancelButton = true
         searchBar.placeholder = "Search for a place or address"
