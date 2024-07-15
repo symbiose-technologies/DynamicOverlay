@@ -15,14 +15,18 @@ extension Binding where Value: Equatable, Value: CaseIterable {
             get: {
                 Value.index(of: wrappedValue)
             },
-            set: { index in
-                wrappedValue = Value.value(at: index)
+            set: { index, tx in
+                //set using the same tx
+                self.transaction(tx).wrappedValue = Value.value(at: index)
+                
+//                wrappedValue = Value.value(at: index)
             }
         )
     }
 }
 
-extension CaseIterable where Self: Equatable {
+
+public extension CaseIterable where Self: Equatable {
 
     static func index(of target: AllCases.Element) -> Int {
         var index = 0

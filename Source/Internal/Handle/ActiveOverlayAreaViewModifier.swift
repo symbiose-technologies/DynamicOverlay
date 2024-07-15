@@ -24,3 +24,25 @@ struct ActiveOverlayAreaViewModifier<Key: PreferenceKey>: ViewModifier where Key
         )
     }
 }
+
+
+
+
+
+struct SymActiveOverlayAreaViewModifier<Key: PreferenceKey>: ViewModifier where Key.Value == [String: ActivatedOverlayArea] {
+
+    let id: String
+    let key: Key.Type
+
+    func body(content: Content) -> some View {
+        content.background(
+            GeometryReader { proxy in
+                Spacer().preference(
+                    key: key,
+                    value: [id: .active(proxy.frame(in: .overlay)) ]
+                    
+                )
+            }
+        )
+    }
+}

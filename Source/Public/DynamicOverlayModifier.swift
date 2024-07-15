@@ -8,6 +8,50 @@
 
 import SwiftUI
 
+
+public struct DynamicOverlayContainerHostModifier<C: View>: ViewModifier {
+    
+    let model: DynamicOverlayContainerModel
+    let contentBuilder: () -> C
+    
+    public init(model: DynamicOverlayContainerModel,
+                @ViewBuilder content: @escaping () -> C
+    ) {
+        self.model = model
+        self.contentBuilder = content
+    }
+    
+    public func body(content: Content) -> some View {
+        SymOverlayContainerDynamicOverlayView(
+            model: model,
+            background: content,
+            content: contentBuilder()
+        )
+        
+    }
+    
+}
+
+public extension View {
+    
+    func hostDynamicOverlay<C: View>(model: DynamicOverlayContainerModel, @ViewBuilder overlay: @escaping () -> C) -> some View {
+        self
+            .modifier(DynamicOverlayContainerHostModifier(model: model, content: overlay))
+        
+    }
+    
+}
+
+
+
+
+/// MARK END SYMBIOSE
+
+
+
+
+
+
 public extension View {
 
     /// Adds a dynamic overlay above this view.
@@ -32,7 +76,8 @@ public extension View {
 }
 
 public struct AddDynamicOverlayModifier<Overlay: View>: ViewModifier {
-
+    
+    
     let overlay: Overlay
 
     // MARK: - ViewModifier

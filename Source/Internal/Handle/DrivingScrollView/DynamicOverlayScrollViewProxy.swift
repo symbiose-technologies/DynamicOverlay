@@ -37,6 +37,18 @@ struct DynamicOverlayScrollViewProxyPreferenceKey: PreferenceKey {
     }
 }
 
+struct SymDynamicOverlayScrollViewProxyPreferenceKey: PreferenceKey {
+
+    typealias Value = [String: ActivatedOverlayArea]
+    
+    static var defaultValue: [String: ActivatedOverlayArea] = [:]
+
+    static func reduce(value: inout Value, nextValue: () -> Value) {
+        value.merge(nextValue(), uniquingKeysWith: { $1 })
+    }
+    
+}
+
 private extension UIView {
 
     func findScrollView(in area: ActivatedOverlayArea,
@@ -44,8 +56,10 @@ private extension UIView {
         let frame = coordinate.convert(bounds, from: self)
         guard area.intersects(frame) else { return nil }
         if let result = self as? UIScrollView {
-            if  result.contentSize.width > result.frame.width {
-//                debugPrint("HScroll -- skipping")
+//            return result
+            
+            if result.contentSize.width > result.frame.width {
+                debugPrint("HScroll -- skipping")
                 
             } else {
                 return result

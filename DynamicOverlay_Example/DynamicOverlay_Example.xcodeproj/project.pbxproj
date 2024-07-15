@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22D7B2D42C1B9D73009DA905 /* Sym+MapRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7B2D32C1B9D73009DA905 /* Sym+MapRootView.swift */; };
 		E739AD94291D45F00076B2AC /* DynamicOverlay in Frameworks */ = {isa = PBXBuildFile; productRef = E739AD93291D45F00076B2AC /* DynamicOverlay */; };
 		E73A7CE9262B2A8400959344 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73A7CE8262B2A8400959344 /* MapView.swift */; };
 		E73A7CEC262B2AA400959344 /* MapRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73A7CEB262B2AA400959344 /* MapRootView.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		22D7B2D32C1B9D73009DA905 /* Sym+MapRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sym+MapRootView.swift"; sourceTree = "<group>"; };
 		E739AD92291D45B10076B2AC /* DynamicOverlay */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DynamicOverlay; path = ..; sourceTree = "<group>"; };
 		E73A7CE8262B2A8400959344 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E73A7CEB262B2AA400959344 /* MapRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRootView.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				E73A7CEB262B2AA400959344 /* MapRootView.swift */,
+				22D7B2D32C1B9D73009DA905 /* Sym+MapRootView.swift */,
 				E73A7CE8262B2A8400959344 /* MapView.swift */,
 				E750EE4D262B2B4800E79C6B /* OverlayView.swift */,
 				E750EE50262C30F600E79C6B /* SearchBar.swift */,
@@ -313,6 +316,7 @@
 				E750EE9A262D799B00E79C6B /* FavoriteCell.swift in Sources */,
 				E750EE4E262B2B4800E79C6B /* OverlayView.swift in Sources */,
 				E750EE63262C463100E79C6B /* MapApp.swift in Sources */,
+				22D7B2D42C1B9D73009DA905 /* Sym+MapRootView.swift in Sources */,
 				E750EE96262D772700E79C6B /* OverlayBackgroundView.swift in Sources */,
 				E750EE9C262D7C9000E79C6B /* BackdropView.swift in Sources */,
 				E750EE51262C30F600E79C6B /* SearchBar.swift in Sources */,
@@ -529,7 +533,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C7G63Q6LZ9;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -556,7 +560,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C7G63Q6LZ9;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

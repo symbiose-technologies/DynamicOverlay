@@ -8,6 +8,16 @@
 
 import SwiftUI
 
+struct IdWrapped<Value: Equatable>: Equatable {
+    let id: String
+    let value: Value
+    init(id: String, value: Value) {
+        self.id = id
+        self.value = value
+    }
+    
+}
+
 struct ActivatedOverlayArea: Equatable {
 
     private struct Spot: Equatable {

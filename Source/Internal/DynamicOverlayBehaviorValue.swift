@@ -8,24 +8,26 @@
 
 import SwiftUI
 
-struct OverlayTranslation {
-    let height: CGFloat
-    let transaction: Transaction
-    let isDragging: Bool
-    let translationProgress: CGFloat
-    let containerFrame: CGRect
-    let velocity: CGPoint
-    let heightForNotchIndex: (Int) -> CGFloat
+
+public struct OverlayTranslation {
+    public let height: CGFloat
+    public let transaction: Transaction
+    public let isDragging: Bool
+    public let translationProgress: CGFloat
+    public let containerFrame: CGRect
+    public let velocity: CGPoint
+    public let heightForNotchIndex: (Int) -> CGFloat
 }
 
-struct DynamicOverlayBehaviorValue {
+
+public struct DynamicOverlayBehaviorValue {
 
     let notchDimensions: [Int: NotchDimension]?
     let block: ((OverlayTranslation) -> Void)?
     let binding: Binding<Int>?
     let disabledNotchIndexes: Set<Int>
 
-    init(notchDimensions: [Int: NotchDimension]? = nil,
+    public init(notchDimensions: [Int: NotchDimension]? = nil,
          block: ((OverlayTranslation) -> Void)? = nil,
          binding: Binding<Int>? = nil,
          disabledNotchIndexes: Set<Int> = []) {
@@ -36,7 +38,8 @@ struct DynamicOverlayBehaviorValue {
     }
 }
 
-extension DynamicOverlayBehaviorValue {
+
+public extension DynamicOverlayBehaviorValue {
 
     static var `default`: DynamicOverlayBehaviorValue {
         DynamicOverlayBehaviorValue(

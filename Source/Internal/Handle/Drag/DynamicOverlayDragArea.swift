@@ -44,3 +44,17 @@ struct DynamicOverlayDragAreaPreferenceKey: PreferenceKey {
         value.merge(nextValue())
     }
 }
+
+
+
+struct SymDynamicOverlayDragAreaPreferenceKey: PreferenceKey {
+
+    typealias Value = [String: ActivatedOverlayArea]
+    
+    static var defaultValue: [String: ActivatedOverlayArea] = [:]
+
+    static func reduce(value: inout Value, nextValue: () -> Value) {
+        value.merge(nextValue(), uniquingKeysWith: { $1 })
+    }
+    
+}

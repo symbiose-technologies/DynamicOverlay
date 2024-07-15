@@ -54,6 +54,7 @@ struct DynamicOverlayContainerAnimationController: OverlayAnimatedTransitioning 
     // MARK: - OverlayAnimatedTransitioning
 
     public func interruptibleAnimator(using context: OverlayContainerContextTransitioning) -> UIViewImplicitlyAnimating {
+        debugPrint("interruptibleAnimator -- creating a new one!")
         let timing = UISpringTimingParameters(
             mass: springMass(context: context),
             stiffness: springStiffness(context: context),

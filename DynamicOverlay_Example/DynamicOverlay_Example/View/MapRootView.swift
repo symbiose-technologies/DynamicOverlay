@@ -95,36 +95,5 @@ struct MapRootView: View {
 //        .dynamicOverlayBehavior(behavior2)
     }
     
-    
-    
-
-    private var overlay2: some View {
-        OverlayView { event in
-            switch event {
-            case .didBeginEditing:
-                state.isEditing = true
-                withAnimation { state.notch = .max }
-            case .didEndEditing:
-                state.isEditing = false
-                withAnimation { state.notch = .min }
-            }
-        }
-        .drivingScrollView()
-        
-    }
-    
-    private var behavior2: some DynamicOverlayBehavior {
-        MagneticNotchOverlayBehavior<Notch> { notch in
-            switch notch {
-//            case .max:
-//                return .fractional(0.8)
-//            case .min:
-//                return .fractional(0.3)
-//            case .micro:
-            default:
-                return .absolute(80)
-            }
-        }
-    }
 
 }

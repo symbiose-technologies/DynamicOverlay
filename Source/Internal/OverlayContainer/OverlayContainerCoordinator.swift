@@ -34,6 +34,7 @@ struct OverlayContainerState: Equatable {
     let layout: OverlayContainerLayout
 }
 
+
 class OverlayContainerCoordinator {
 
     private let background: UIViewController
@@ -51,13 +52,19 @@ class OverlayContainerCoordinator {
         DynamicOverlayContainerAnimationController(style: style)
     }
 
+    var model: DynamicOverlayContainerModel?
+    
+    
     // MARK: - Life Cycle
 
     init(style: OverlayContainerViewController.OverlayStyle,
          layout: OverlayContainerLayout,
          passiveContainer: OverlayContainerPassiveContainer,
          background: UIViewController,
-         content: UIViewController) {
+         content: UIViewController,
+         model: DynamicOverlayContainerModel? = nil
+    ) {
+        self.model = model
         self.state = .initial(layout)
         self.passiveContainer = passiveContainer
         self.background = background
@@ -67,6 +74,41 @@ class OverlayContainerCoordinator {
 
     // MARK: - Public
 
+//    func move(_ container: OverlayContainerViewController, to state: State, animated: Bool) {
+//        if container.viewControllers.isEmpty {
+//            container.viewControllers = [background, content]
+//        }
+//        let changes = OverlayContainerStateDiffer().diff(
+//            from: self.state,
+//            to: state
+//        )
+//        let requiresLayoutUpdate = changes.contains(.index) || changes.contains(.layout)
+//        if requiresLayoutUpdate && animated {
+//            // we update the content first
+//            container.drivingScrollView = nil // issue #21
+//            container.view.layoutIfNeeded()
+//        }
+//        if changes.contains(.layout) {
+//            container.invalidateNotchHeights()
+//        }
+//        if let index = state.notchIndex, changes.contains(.index) {
+//            container.moveOverlay(toNotchAt: index, animated: animated)
+//        }
+//        if changes.contains(.scrollView) {
+//            CATransaction.setCompletionBlock { [weak container] in
+//                guard let overlay = container?.topViewController?.view else { return }
+//                container?.drivingScrollView = state.drivingScrollViewProxy.findScrollView(in: overlay)
+//            }
+//        }
+//        self.state = state
+//        if changes.contains(.layout) && !animated {
+//            UIView.performWithoutAnimation {
+//                container.view.layoutIfNeeded()
+//            }
+//        }
+//    }
+    
+    
     func move(_ container: OverlayContainerViewController, to state: State, animated: Bool) {
         if container.viewControllers.isEmpty {
             container.viewControllers = [background, content]
@@ -78,23 +120,38 @@ class OverlayContainerCoordinator {
         let requiresLayoutUpdate = changes.contains(.index) || changes.contains(.layout)
         if requiresLayoutUpdate && animated {
             // we update the content first
-            container.drivingScrollView = nil // issue #21
-            container.view.layoutIfNeeded()
+//            container.drivingScrollView = nil // issue #21
+            debugPrint("[OVERLAY] FLAG 1 -- update the content first")
+//            container.view.layoutIfNeeded()
+
+            //EXPERIMENTAL
+            container.view.setNeedsLayout()
+
         }
         if changes.contains(.layout) {
+            debugPrint("[OVERLAY] container.invalidateNotchHeights()")
+
             container.invalidateNotchHeights()
         }
         if let index = state.notchIndex, changes.contains(.index) {
+            debugPrint("[OVERLAY] container.moveOverlay(toNotchAt: \(index), animated: \(animated)")
+
             container.moveOverlay(toNotchAt: index, animated: animated)
         }
         if changes.contains(.scrollView) {
+            debugPrint("[OVERLAY] changes.contains(.scrollView)")
+
             CATransaction.setCompletionBlock { [weak container] in
                 guard let overlay = container?.topViewController?.view else { return }
+                debugPrint("[OVERLAY] changes.contains(.scrollView) -- finding scrollview.....")
+                
                 container?.drivingScrollView = state.drivingScrollViewProxy.findScrollView(in: overlay)
             }
         }
         self.state = state
         if changes.contains(.layout) && !animated {
+            debugPrint("[OVERLAY] FLAG 2 -- changes.contains(.layout) && !animated")
+            
             UIView.performWithoutAnimation {
                 container.view.layoutIfNeeded()
             }

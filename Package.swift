@@ -1,10 +1,10 @@
-// swift-tools-version:5.1
+// swift-tools-version: 5.9
 import PackageDescription
 
 let package = Package(
     name: "DynamicOverlay",
     platforms: [
-        .iOS(.v13)
+        .iOS(.v17)
     ],
     products: [
         .library(

@@ -18,7 +18,8 @@ struct MapApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MapRootView()
+//            MapRootView()
+            SymMapRootView()
         }
     }
 }

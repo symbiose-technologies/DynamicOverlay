@@ -242,7 +242,8 @@ class OverlayContainerRepresentableAdaptorTests: XCTestCase {
             ),
             passiveContainer: holder,
             content: ContentView(),
-            background: Color.green
+            background: Color.green,
+            model: nil
         )
         let coordinator = adaptor.makeCoordinator()
         let context = OverlayContainerRepresentableAdaptor<ContentView, Color>.Context(
